@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora Architecture Bureau</title>
+  <meta name="description" content="Premium architecture studio portfolio with cinematic motion and 3D showcase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#000;--panel:#050505;--fg:#fff;--muted:#aaa;--line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.2);--overlay:rgba(0,0,0,.3);--shell:14px;--radius:26px;--radius2:18px;--space:clamp(4.5rem,8vw,8rem);--container:min(1260px,calc(100vw - 48px))}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--fg);font-family:"Inter","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img,video,canvas{display:block;max-width:100%} a{color:inherit;text-decoration:none} button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+    .shell{padding:var(--shell)} .panel{position:relative;margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+    .container{width:100%;max-width:var(--container);margin:0 auto} .section{padding:var(--space) clamp(1rem,3vw,2.25rem)}
+    .eyebrow{display:inline-block;margin:0 0 1rem;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.68)}
+    .title{margin:0;font-size:clamp(2.2rem,5vw,4.9rem);line-height:.96;letter-spacing:-.06em;text-wrap:balance}
+    .copy{margin:0;color:var(--muted);font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.7;max-width:34rem}
+    .header{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:20;width:min(1140px,calc(100vw - 48px));border:1px solid var(--line);border-radius:999px;background:rgba(0,0,0,.48);backdrop-filter:blur(16px)}
+    .header__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 1.25rem}.brand{font-size:.9rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.nav{display:flex;gap:1rem;font-size:.92rem;color:rgba(255,255,255,.75)}
+    .hero{min-height:calc(100vh - 28px);padding:7.2rem clamp(1rem,3vw,2.25rem) 1rem;background:#000;isolation:isolate}.hero__video,.hero__overlay{position:absolute;inset:0}.hero__video video{width:100%;height:100%;object-fit:cover;transform:scale(1.02);will-change:transform}.hero__overlay{background:var(--overlay);z-index:1}
+    .hero__in{position:relative;z-index:2;min-height:calc(100vh - 28px - 8.2rem);display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(2rem,4vw,5rem);align-items:end}.hero__left{align-self:center;max-width:55rem}.hero__title{margin:0;font-size:clamp(3.6rem,11vw,9.5rem);line-height:.88;font-weight:800;letter-spacing:-.08em}.hero__line{display:block;overflow:hidden}.hero__line span,.reveal-up{display:inline-block;transform:translateY(120%);opacity:0}
+    .hero__side{display:grid;gap:1.6rem;max-width:22rem}.hero__copy{margin:0;color:rgba(255,255,255,.82);font-size:clamp(1rem,1.3vw,1.18rem);line-height:1.65}.hero__actions,.contact__actions{display:flex;flex-wrap:wrap;gap:.9rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-width:11.5rem;min-height:3.3rem;padding:.9rem 1.4rem;border:1px solid transparent;border-radius:999px;transition:transform .22s ease,border-color .22s ease,background-color .22s ease,color .22s ease}.btn:hover,.btn:focus-visible{transform:translateY(-2px)}.btn--primary{background:#fff;color:#000}.btn--ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.24);backdrop-filter:blur(10px)}
+    .hero__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.16)}.stat strong{display:block;font-size:1.9rem;letter-spacing:-.05em}.stat span{color:rgba(255,255,255,.66);font-size:.9rem}
+    .about{background:radial-gradient(circle at top right,rgba(255,255,255,.05),transparent 30%),linear-gradient(180deg,#040404,#070707)}.about__grid,.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,4vw,5rem);align-items:start}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+    .fact,.step,.logo,.project,.showcase__copy{border:1px solid var(--line);border-radius:var(--radius2);background:rgba(255,255,255,.02)}.fact{padding:1.15rem}.fact strong{display:block;margin-bottom:.35rem;font-size:1.1rem}.fact span{color:var(--muted);font-size:.95rem;line-height:1.55}
+    .about__viz{position:relative;min-height:460px}.about__cap{position:absolute;left:1rem;bottom:1rem;padding:.7rem .9rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(0,0,0,.48);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+    .section__head{display:flex;justify-content:space-between;align-items:end;gap:1.5rem;margin-bottom:2rem}
+    .projects-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1rem}.project{padding:1rem;transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;transform-style:preserve-3d}.project:hover{transform:translateY(-10px) rotateX(4deg) rotateY(-4deg);border-color:var(--line2);box-shadow:0 24px 80px rgba(0,0,0,.35)}.project:nth-child(1),.project:nth-child(4){grid-column:span 7}.project:nth-child(2),.project:nth-child(3),.project:nth-child(5),.project:nth-child(6){grid-column:span 5}
+    .project__media{position:relative;aspect-ratio:1.35/1;overflow:hidden;border-radius:14px}.project__media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.3))}.project img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.project:hover img{transform:scale(1.06)}.project__meta{display:flex;justify-content:space-between;gap:1rem;align-items:end;padding-top:1rem}.project h3{margin:0 0 .35rem;font-size:clamp(1.3rem,2vw,1.75rem);letter-spacing:-.04em}.project p,.project time{margin:0;color:var(--muted);font-size:.95rem}
+    .showcase{min-height:220vh;padding:0;background:#030303}.showcase__sticky{position:sticky;top:14px;min-height:calc(100vh - 28px);display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;padding:1rem}.showcase__canvas{position:relative;min-height:calc(100vh - 50px);border:1px solid var(--line);border-radius:var(--radius2);overflow:hidden;background:radial-gradient(circle at center,rgba(255,255,255,.05),transparent 45%),#020202}.showcase__copy{display:grid;align-content:space-between;gap:1.5rem;padding:clamp(1.15rem,2vw,2rem)}.meter{height:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}.meter span{position:absolute;inset:0 auto 0 0;width:0%;background:#fff}.notes{display:grid;gap:.85rem}.notes div{padding-top:.95rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.72);font-size:.95rem}
+    .hover-card{position:absolute;left:1rem;bottom:1rem;width:min(320px,calc(100% - 2rem));padding:1rem;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(0,0,0,.58);backdrop-filter:blur(18px);opacity:0;transform:translateY(14px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}.hover-card.show{opacity:1;transform:translateY(0)}.hover-card strong{display:block;margin-bottom:.35rem;font-size:1.05rem}.hover-card span{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .philosophy{display:grid;place-items:center;min-height:min(90vh,820px);text-align:center;background:radial-gradient(circle at center,rgba(255,255,255,.06),transparent 35%),#040404}.philosophy p{max-width:13ch;margin:0;font-size:clamp(2.8rem,7vw,6.4rem);line-height:.98;letter-spacing:-.07em}.word{display:inline-block;opacity:.18}
+    .process{background:linear-gradient(180deg,#050505,#020202)}.process__track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,1fr);gap:1rem;padding-top:2rem;will-change:transform}.step{min-height:350px;padding:1.25rem}.step__icon{width:3.1rem;height:3.1rem;display:grid;place-items:center;margin-bottom:4rem;border:1px solid rgba(255,255,255,.12);border-radius:999px}.step__n{margin-bottom:1rem;color:rgba(255,255,255,.52);font-size:.84rem;letter-spacing:.14em;text-transform:uppercase}.step h3{margin:0 0 .7rem;font-size:1.65rem;letter-spacing:-.04em}.step p{margin:0;color:var(--muted);line-height:1.65;max-width:16rem}
+    .logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}.logo{display:grid;place-items:center;min-height:120px;padding:1rem;color:rgba(255,255,255,.78);font-size:clamp(1rem,1.5vw,1.3rem);letter-spacing:.08em;text-transform:uppercase;transition:transform .22s ease,border-color .22s ease,color .22s ease}.logo:hover{transform:translateY(-6px);border-color:var(--line2);color:#fff}
+    .awards-list{display:grid;border-top:1px solid rgba(255,255,255,.12)}.award{display:grid;grid-template-columns:150px 1fr auto;gap:1rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,.12)}.award__year{color:rgba(255,255,255,.62);font-size:.94rem;letter-spacing:.14em;text-transform:uppercase}.award__title{font-size:clamp(1.1rem,2vw,1.42rem);letter-spacing:-.03em}.award__tag{color:var(--muted);font-size:.92rem}
+    .contact{min-height:min(80vh,720px);display:grid;align-items:center;background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.08),transparent 30%),#050505}.contact__box{display:grid;gap:1.5rem;max-width:56rem}.contact__channels{display:grid;gap:1rem;margin-top:.5rem}.contact__email,.contact__socials{border:1px solid var(--line);border-radius:var(--radius2);background:rgba(255,255,255,.02)}.contact__email{padding:1.2rem 1.2rem 1.25rem}.contact__socials{padding:1.1rem}.contact__label{display:block;margin-bottom:.9rem;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.52)}.contact__link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 1.1rem;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.015);transition:transform .3s ease,border-color .3s ease,background-color .3s ease}.contact__link:hover{transform:translateY(-4px);border-color:var(--line2);background:rgba(255,255,255,.04)}.contact__link-main{display:flex;align-items:center;gap:.95rem;min-width:0}.contact__icon{display:grid;place-items:center;width:2.9rem;height:2.9rem;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);color:#fff;flex:0 0 auto;overflow:hidden}.contact__icon svg{width:18px;height:18px}.contact__icon img{width:100%;height:100%;object-fit:cover}.contact__text{display:grid;gap:.2rem;min-width:0}.contact__text strong{font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.56)}.contact__text span{color:#fff;word-break:break-word}.contact__arrow{color:rgba(255,255,255,.45);font-size:1.1rem;transition:transform .3s ease,color .3s ease}.contact__link:hover .contact__arrow{transform:translateX(4px);color:#fff}.contact__social-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .footer{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2rem;color:rgba(255,255,255,.7)}.footer h3{margin:0 0 .25rem;font-size:.88rem;color:rgba(255,255,255,.52);letter-spacing:.14em;text-transform:uppercase}.footer__col{display:grid;gap:.8rem}.footnote{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);font-size:.9rem}
+    @media (max-width:1100px){.hero__in,.split,.about__grid,.showcase__sticky,.footer{grid-template-columns:1fr}.section__head{display:grid}.showcase{min-height:auto;padding:var(--space) clamp(1rem,3vw,2.25rem)}.showcase__sticky{position:relative;top:auto;min-height:auto;padding:0}.showcase__canvas{min-height:68vh}.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project,.project:nth-child(1),.project:nth-child(2),.project:nth-child(3),.project:nth-child(4),.project:nth-child(5),.project:nth-child(6){grid-column:span 1}.logos{grid-template-columns:repeat(2,minmax(0,1fr))}.award{grid-template-columns:1fr}}
+    @media (max-width:840px){.header{top:14px;width:calc(100vw - 28px)}.nav{display:none}.hero{padding-top:6.7rem}.hero__title{font-size:clamp(3.2rem,15vw,6rem)}.hero__stats,.facts{grid-template-columns:1fr}.process__track{grid-auto-flow:row}}
+    @media (max-width:640px){.hero__actions,.contact__actions{flex-direction:column;align-items:stretch}.btn{width:100%}.projects-grid,.logos,.contact__social-grid{grid-template-columns:1fr}.hero__stats{gap:.8rem}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header__in">
+      <a class="brand" href="#top">Nexora Bureau</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">Studio</a><a href="#projects">Projects</a><a href="#showcase">Showcase</a><a href="#process">Process</a><a href="#clients">Clients</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="panel hero">
+      <div class="hero__video" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata"><source src="Videos/Video1.mp4" type="video/mp4"></video></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="container hero__in">
+        <div class="hero__left">
+          <span class="eyebrow reveal-up">Architecture Bureau / Berlin + Global</span>
+          <h1 class="hero__title" aria-label="Architecture that shapes the future.">
+            <span class="hero__line"><span>Architecture</span></span>
+            <span class="hero__line"><span>that shapes</span></span>
+            <span class="hero__line"><span>the future.</span></span>
+          </h1>
+          <div class="hero__stats">
+            <div class="stat reveal-up"><strong>42</strong><span>Built and in-progress spaces</span></div>
+            <div class="stat reveal-up"><strong>11</strong><span>Cities shaped by our work</span></div>
+            <div class="stat reveal-up"><strong>18</strong><span>Awards and recognitions</span></div>
+          </div>
+        </div>
+        <div class="hero__side">
+          <p class="hero__copy reveal-up">We design spaces.<br>Cities.<br>Experiences.</p>
+          <div class="hero__actions reveal-up"><a class="btn btn--ghost" href="#projects">View Projects</a><a class="btn btn--primary" href="#contact">Start a Project</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel section about">
+      <div class="container about__grid">
+        <div>
+          <span class="eyebrow js-reveal">About The Studio</span>
+          <h2 class="title js-reveal">We design spaces that matter.</h2>
+          <div class="facts">
+            <div class="fact js-reveal"><strong>Architecture + Interiors</strong><span>One clear vision from urban plan to material detail.</span></div>
+            <div class="fact js-reveal"><strong>Human-first spaces</strong><span>Light, flow, comfort, and calm lead every decision.</span></div>
+            <div class="fact js-reveal"><strong>Global practice</strong><span>Homes, campuses, culture, hospitality, and civic work.</span></div>
+            <div class="fact js-reveal"><strong>Built for longevity</strong><span>Simple forms. Better performance. Stronger city life.</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="copy js-reveal">Good buildings feel simple.<br>But simple takes thinking.<br>We design spaces where people live,<br>work,<br>and feel good.</p>
+          <div class="about__viz panel js-reveal">
+            <canvas id="about-canvas" aria-hidden="true"></canvas>
+            <div class="about__cap">Spatial Studies / Live Wireframe</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel section">
+      <div class="container">
+        <div class="section__head">
+          <div><span class="eyebrow js-reveal">Featured Projects</span><h2 class="title js-reveal">Six spaces with a clear point of view.</h2></div>
+          <p class="copy js-reveal">Housing, hospitality, culture, work, and urban life. Each project is shaped to feel calm, precise, and memorable.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=80" alt="Harbor museum architecture"></div><div class="project__meta"><div><h3>Harbor Museum</h3><p>Copenhagen, Denmark</p></div><time>2025</time></div></article>
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80" alt="Minimal residential tower"></div><div class="project__meta"><div><h3>North Tower</h3><p>Stockholm, Sweden</p></div><time>2024</time></div></article>
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1400&q=80" alt="Modern office campus"></div><div class="project__meta"><div><h3>Axis Campus</h3><p>Berlin, Germany</p></div><time>2026</time></div></article>
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=80" alt="Luxury villa architecture"></div><div class="project__meta"><div><h3>Cliff House</h3><p>Ibiza, Spain</p></div><time>2023</time></div></article>
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80" alt="Hotel atrium interior"></div><div class="project__meta"><div><h3>Monolith Hotel</h3><p>Dubai, UAE</p></div><time>2025</time></div></article>
+          <article class="project js-reveal"><div class="project__media"><img loading="lazy" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1400&q=80" alt="Urban mixed use district"></div><div class="project__meta"><div><h3>South Quarter</h3><p>Amsterdam, Netherlands</p></div><time>2022</time></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase" class="panel section showcase">
+      <div class="container showcase__sticky">
+        <div class="showcase__canvas">
+          <canvas id="showcase-canvas" aria-label="3D project showcase"></canvas>
+          <div class="hover-card" id="hover-card"><strong id="hover-title">Project Preview</strong><span id="hover-copy">Move through the scene to explore featured work.</span></div>
+        </div>
+        <div class="showcase__copy">
+          <div><span class="eyebrow js-reveal">3D Project Showcase</span><h2 class="title js-reveal">A city of ideas you can move through.</h2></div>
+          <p class="copy js-reveal">Floating cubes mark public work. Wireframe towers signal future studies. Dense blocks stand for city-scale projects. Scroll to travel through the scene. Hover to reveal project details.</p>
+          <div class="js-reveal"><div class="meter"><span id="meter-bar"></span></div><div class="notes"><div>Camera drifts forward with scroll for a calm cinematic read.</div><div>Soft white light keeps the geometry clear and premium.</div><div>Particles add depth without stealing attention.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel section philosophy">
+      <div class="container">
+        <span class="eyebrow js-reveal">Design Philosophy</span>
+        <p id="philosophy-text">Architecture is not just buildings. It is light. Space. Emotion.</p>
+      </div>
+    </section>
+
+    <section id="process" class="panel section process">
+      <div class="container">
+        <div class="split">
+          <div><span class="eyebrow js-reveal">Process</span><h2 class="title js-reveal">Clear steps. Better outcomes.</h2></div>
+          <p class="copy js-reveal">We keep the process calm and structured. Good work moves forward when every decision has a reason.</p>
+        </div>
+        <div class="process__track" id="process-track">
+          <article class="step"><div class="step__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 18L10 6L14 12L20 4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20H20" stroke="currentColor" stroke-width="1.5"/></svg></div><div class="step__n">Step 01</div><h3>Research</h3><p>We listen well. We study the place, the people, and the real problem.</p></article>
+          <article class="step"><div class="step__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 18L12 5L19 18H5Z" stroke="currentColor" stroke-width="1.5"/></svg></div><div class="step__n">Step 02</div><h3>Concept</h3><p>We explore bold ideas. Then we remove noise until the right idea stays.</p></article>
+          <article class="step"><div class="step__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="14" stroke="currentColor" stroke-width="1.5"/><path d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="1.5"/></svg></div><div class="step__n">Step 03</div><h3>Design</h3><p>Plans, models, materials, and systems come together with one clear language.</p></article>
+          <article class="step"><div class="step__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 16L12 8L20 16" stroke="currentColor" stroke-width="1.5"/><path d="M7 13V20H17V13" stroke="currentColor" stroke-width="1.5"/></svg></div><div class="step__n">Step 04</div><h3>Build</h3><p>We guide the final work so the built result feels as strong as the first idea.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="clients" class="panel section">
+      <div class="container">
+        <div class="section__head">
+          <div><span class="eyebrow js-reveal">Clients / Partners</span><h2 class="title js-reveal">Trusted by teams that care about design.</h2></div>
+          <p class="copy js-reveal">Cultural institutions, private clients, hospitality groups, technology firms, and public partners.</p>
+        </div>
+        <div class="logos">
+          <div class="logo js-stagger">Atelier One</div><div class="logo js-stagger">Urban Grid</div><div class="logo js-stagger">Northstone</div><div class="logo js-stagger">Linea</div><div class="logo js-stagger">Civic Form</div><div class="logo js-stagger">Aureum Hotels</div><div class="logo js-stagger">Framework</div><div class="logo js-stagger">Habitat Lab</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <div class="container">
+        <div class="section__head">
+          <div><span class="eyebrow js-reveal">Awards / Recognition</span><h2 class="title js-reveal">Work recognized for clarity and impact.</h2></div>
+          <p class="copy js-reveal">We value lasting work more than noise, but we are proud when thoughtful design is seen.</p>
+        </div>
+        <div class="awards-list">
+          <div class="award js-reveal"><div class="award__year">2024</div><div class="award__title">International Architecture Prize</div><div class="award__tag">Civic / Culture</div></div>
+          <div class="award js-reveal"><div class="award__year">2023</div><div class="award__title">Urban Design Award</div><div class="award__tag">Mixed Use / City Life</div></div>
+          <div class="award js-reveal"><div class="award__year">2022</div><div class="award__title">Innovation In Architecture</div><div class="award__tag">Research / Systems</div></div>
+          <div class="award js-reveal"><div class="award__year">2021</div><div class="award__title">European Spatial Experience Honor</div><div class="award__tag">Hospitality / Interiors</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel section contact">
+      <div class="container contact__box">
+        <span class="eyebrow js-reveal">Start A Conversation</span>
+        <h2 class="title js-reveal">Let&apos;s build something extraordinary.</h2>
+        <p class="copy js-reveal">New headquarters. A private home. A cultural space. A city block with a stronger future. We are ready when you are.</p>
+        <div class="contact__actions js-reveal"><a class="btn btn--primary" href="mailto:hello@nexora-architecture.com">Start a Project</a><a class="btn btn--ghost" href="mailto:hello@nexora-architecture.com">Email Us</a></div>
+        <div class="contact__channels js-reveal">
+          <div class="contact__email">
+            <span class="contact__label">Business Email</span>
+            <a class="contact__link" href="mailto:hello@nexora-architecture.com">
+              <span class="contact__link-main">
+                <span class="contact__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7.5L12 13.5L20 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="3.25" y="5.25" width="17.5" height="13.5" rx="2.25" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </span>
+                <span class="contact__text">
+                  <strong>Email</strong>
+                  <span>hello@nexora-architecture.com</span>
+                </span>
+              </span>
+              <span class="contact__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="contact__socials">
+            <span class="contact__label">Socials</span>
+            <div class="contact__social-grid">
+              <a class="contact__link" href="https://t.me/nexorabureau" target="_blank" rel="noreferrer">
+                <span class="contact__link-main">
+                  <span class="contact__icon" aria-hidden="true">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/960px-Telegram_logo.svg.png" alt="">
+                  </span>
+                  <span class="contact__text">
+                    <strong>Telegram</strong>
+                    <span>@nexorabureau</span>
+                  </span>
+                </span>
+                <span class="contact__arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="contact__link" href="https://www.linkedin.com/company/nexorabureau" target="_blank" rel="noreferrer">
+                <span class="contact__link-main">
+                  <span class="contact__icon" aria-hidden="true">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="">
+                  </span>
+                  <span class="contact__text">
+                    <strong>LinkedIn</strong>
+                    <span>/company/nexorabureau</span>
+                  </span>
+                </span>
+                <span class="contact__arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="contact__link" href="https://www.instagram.com/nexorabureau/" target="_blank" rel="noreferrer">
+                <span class="contact__link-main">
+                  <span class="contact__icon" aria-hidden="true">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="">
+                  </span>
+                  <span class="contact__text">
+                    <strong>Instagram</strong>
+                    <span>@nexorabureau</span>
+                  </span>
+                </span>
+                <span class="contact__arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="panel section">
+      <div class="container">
+        <div class="footer">
+          <div class="footer__col"><div class="brand">Nexora Bureau</div><p class="copy">Architecture studio for spaces that feel calm, intelligent, and future-ready.</p></div>
+          <div class="footer__col"><h3>Navigation</h3><a href="#about">About</a><a href="#projects">Projects</a><a href="#showcase">Showcase</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+          <div class="footer__col"><h3>Connect</h3><a href="mailto:hello@nexora-architecture.com">hello@nexora-architecture.com</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a></div>
+        </div>
+        <div class="footnote">© 2026 Nexora Architecture Bureau. All rights reserved.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.timeline({defaults:{ease:"power3.out"}}).to(".hero__line span",{y:"0%",opacity:1,duration:1.2,stagger:.12}).to(".reveal-up",{y:0,opacity:1,duration:.9,stagger:.08},"-=.8");
+      gsap.to(".hero__video video",{scale:1.13,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}});
+      document.querySelectorAll(".js-reveal").forEach(function(el){gsap.fromTo(el,{y:48,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 86%"}})});
+      if(document.querySelectorAll(".js-stagger").length){gsap.from(".js-stagger",{y:26,opacity:0,duration:.9,stagger:.09,ease:"power3.out",scrollTrigger:{trigger:"#clients",start:"top 82%"}})}
+      if(window.innerWidth>840){gsap.to("#process-track",{x:function(){const t=document.getElementById("process-track");return -Math.max(t.scrollWidth-t.clientWidth,0)},ease:"none",scrollTrigger:{trigger:"#process",start:"top top",end:"+=1200",scrub:1,pin:true}})}
+      const philosophy=document.getElementById("philosophy-text"); philosophy.innerHTML=philosophy.textContent.trim().split(/\s+/).map(function(w){return '<span class="word">'+w+"</span> "}).join(""); gsap.to(".word",{opacity:1,duration:.6,stagger:.05,ease:"power2.out",scrollTrigger:{trigger:".philosophy",start:"top 65%"}});
+      initAboutScene(); initShowcaseScene();
+    });
+
+    function initAboutScene(){const canvas=document.getElementById("about-canvas"); if(!canvas||!window.THREE)return; const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(38,1,.1,100); camera.position.set(0,1.8,9); const renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.8)); scene.add(new THREE.AmbientLight(0xffffff,1.4)); const light=new THREE.PointLight(0xffffff,1.8,40); light.position.set(4,8,6); scene.add(light); const group=new THREE.Group(); scene.add(group); for(let i=0;i<8;i+=1){const g=new THREE.BoxGeometry(.9+Math.random()*1.2,1.4+Math.random()*2.4,.9+Math.random()*1.2); const m=new THREE.MeshStandardMaterial({color:0x0d0d0d,metalness:.15,roughness:.6,transparent:true,opacity:.95}); const mesh=new THREE.Mesh(g,m); const edges=new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.42})); const wrap=new THREE.Group(); wrap.add(mesh,edges); wrap.position.set((i-3.5)*.9,Math.sin(i)*.35,(Math.random()-.5)*3); wrap.rotation.y=Math.random()*Math.PI; group.add(wrap)} function resize(){const b=canvas.parentElement.getBoundingClientRect(); camera.aspect=b.width/b.height; camera.updateProjectionMatrix(); renderer.setSize(b.width,b.height,false)} resize(); window.addEventListener("resize",resize); (function tick(){group.rotation.y+=.002; group.children.forEach(function(item,index){item.position.y+=Math.sin(performance.now()*.0005+index)*.0015; item.rotation.y+=.0015}); renderer.render(scene,camera); requestAnimationFrame(tick)})()}
+
+    function initShowcaseScene(){const canvas=document.getElementById("showcase-canvas"), card=document.getElementById("hover-card"), title=document.getElementById("hover-title"), copy=document.getElementById("hover-copy"), meter=document.getElementById("meter-bar"); if(!canvas||!window.THREE)return; const scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x020202,12,32); const camera=new THREE.PerspectiveCamera(44,1,.1,100); camera.position.set(0,2,12); const renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.8)); scene.add(new THREE.AmbientLight(0xffffff,1.1)); const key=new THREE.DirectionalLight(0xffffff,1.4); key.position.set(6,9,8); const rim=new THREE.PointLight(0xffffff,1,25); rim.position.set(-8,4,-4); scene.add(key,rim); const city=new THREE.Group(); scene.add(city); const raycaster=new THREE.Raycaster(); const pointer=new THREE.Vector2(2,2); let hovered=null, progress=0; const interactive=[]; const meta=[["Harbor Museum","Public culture object / Copenhagen / 2025"],["North Tower","Residential landmark / Stockholm / 2024"],["Axis Campus","Workplace district / Berlin / 2026"],["Cliff House","Private residence / Ibiza / 2023"],["Monolith Hotel","Hospitality icon / Dubai / 2025"],["South Quarter","Urban mixed use / Amsterdam / 2022"]]; meta.forEach(function(item,index){const h=1.8+Math.random()*4.8,w=1+Math.random()*1.2,d=1+Math.random()*1.2,g=new THREE.BoxGeometry(w,h,d),m=new THREE.MeshStandardMaterial({color:0x101010,metalness:.22,roughness:.48}),mesh=new THREE.Mesh(g,m); mesh.position.set((index-2.5)*2.8,h/2-2,-index*2.7); mesh.userData={title:item[0],copy:item[1]}; mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.38}))); city.add(mesh); interactive.push(mesh)}); for(let i=0;i<24;i+=1){const cube=new THREE.Mesh(new THREE.BoxGeometry(.5+Math.random(),.5+Math.random()*2.5,.5+Math.random()),new THREE.MeshStandardMaterial({color:0x090909,metalness:.18,roughness:.65,transparent:true,opacity:.95})); cube.position.set((Math.random()-.5)*14,Math.random()*6-3,-Math.random()*26); cube.rotation.set(Math.random(),Math.random(),Math.random()); city.add(cube)} const pGeo=new THREE.BufferGeometry(), count=320, arr=new Float32Array(count*3); for(let i=0;i<count;i+=1){arr[i*3]=(Math.random()-.5)*18; arr[i*3+1]=(Math.random()-.5)*10; arr[i*3+2]=-Math.random()*30} pGeo.setAttribute("position",new THREE.BufferAttribute(arr,3)); const particles=new THREE.Points(pGeo,new THREE.PointsMaterial({color:0xffffff,size:.045,transparent:true,opacity:.58})); scene.add(particles); function resize(){const b=canvas.parentElement.getBoundingClientRect(); camera.aspect=b.width/b.height; camera.updateProjectionMatrix(); renderer.setSize(b.width,b.height,false)} resize(); window.addEventListener("resize",resize); canvas.addEventListener("mousemove",function(e){const r=canvas.getBoundingClientRect(); pointer.x=((e.clientX-r.left)/r.width)*2-1; pointer.y=-((e.clientY-r.top)/r.height)*2+1}); canvas.addEventListener("mouseleave",function(){pointer.x=2;pointer.y=2;hovered=null;card.classList.remove("show")}); ScrollTrigger.create({trigger:"#showcase",start:"top top",end:"bottom bottom",scrub:true,onUpdate:function(self){progress=self.progress; meter.style.width=(progress*100).toFixed(1)+"%"}}); (function animate(){requestAnimationFrame(animate); const time=performance.now()*.00025; camera.position.z=12-progress*11; camera.position.x=Math.sin(progress*Math.PI)*1.8; camera.position.y=2+progress*1.4; camera.lookAt(new THREE.Vector3(0,-.4+progress*.8,-8-progress*8)); city.children.forEach(function(obj,index){obj.rotation.y+=.0015; obj.position.y+=Math.sin(time*5+index)*.0018}); particles.rotation.y+=.0008; raycaster.setFromCamera(pointer,camera); const hits=raycaster.intersectObjects(interactive,false); if(hits.length){const target=hits[0].object;if(hovered!==target){hovered=target; title.textContent=target.userData.title; copy.textContent=target.userData.copy; card.classList.add("show")}} else if(hovered){hovered=null; card.classList.remove("show")} renderer.render(scene,camera)})()}
+  </script>
+</body>
+</html>

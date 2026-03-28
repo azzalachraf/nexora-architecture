@@ -1,0 +1,6 @@
+screenshots/.chrome-headless/
+screenshots/.chrome-headless-mobile/
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
