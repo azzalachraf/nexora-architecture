@@ -36,11 +36,7 @@ npx serve .
 
 ## Live Demo
 
-After you push this repository to GitHub, enable GitHub Pages with the included workflow.
-
-Suggested demo URL:
-
-`https://<your-github-username>.github.io/<your-repo-name>/`
+[View Live Demo](https://azzalachraf.github.io/nexora-architecture/)
 
 ## Screenshot
 
